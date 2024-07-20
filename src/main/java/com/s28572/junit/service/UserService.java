@@ -1,5 +1,6 @@
 package com.s28572.junit.service;
 
+import com.s28572.junit.dao.UserDao;
 import com.s28572.junit.dto.User;
 import lombok.Getter;
 
@@ -9,6 +10,15 @@ import java.util.*;
 public class UserService {
     
     private final List<User> users = new ArrayList<>();
+    private final UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public boolean delete(Integer userId) {
+        return userDao.delete(userId);
+    }
 
     public void add(User... users) {
         this.users.addAll(Arrays.asList(users));
